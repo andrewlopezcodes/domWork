@@ -1,8 +1,8 @@
 var button = document.getElementById("enterButton");
 var textInput = document.getElementById("userInput");
 var unorderedList = document.querySelector("ul");
-let inputValueLength = function(){
-  return userInput.length;
+let inputValueLength = function(textInput){
+  return textInput.value.length;
 };
 
 let addToList = function(){
@@ -12,21 +12,22 @@ let addToList = function(){
     textInput.value = "";
   };
 
-textInput.addEventListener("keydown", function(onkeydown){
-  if(onkeydown.key === "Enter" && inputValueLength !== ""){
+let addToEndOfListKeypress = function(onkeydown){
+  if(onkeydown.key === "Enter" && textInput.value.length > 0){
     console.log(onkeydown.key + " key was pressed.");
     console.log(textInput.value);
     addToList();
-  }
-});
+    }
+  };
 
 
-
-button.addEventListener("click", function(){
-  if(inputValueLength !== ""){
+let addToEndOfListButton = function(){
+  if(textInput.value.length > 0){
     console.log(textInput.value);
     addToList();
   }  
-});
+};
 
+textInput.addEventListener("keydown", addToEndOfListKeypress);
 
+button.addEventListener("click", addToEndOfListButton);
