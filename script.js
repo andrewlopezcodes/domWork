@@ -1,6 +1,10 @@
 var button = document.getElementById("enterButton");
 var textInput = document.getElementById("userInput");
 var unorderedList = document.querySelector("ul");
+let inputValueLength = function(){
+  return userInput.length;
+};
+
 let addToList = function(){
     let newLi = document.createElement("li");
     newLi.appendChild(document.createTextNode(textInput.value));
@@ -9,7 +13,9 @@ let addToList = function(){
   };
 
 textInput.addEventListener("keydown", function(onkeydown){
-  if(onkeydown.key === "Enter" && textInput.value !== ""){
+  if(onkeydown.key === "Enter" && inputValueLength !== ""){
+    console.log(onkeydown.key + " key was pressed.");
+    console.log(textInput.value);
     addToList();
   }
 });
@@ -17,7 +23,7 @@ textInput.addEventListener("keydown", function(onkeydown){
 
 
 button.addEventListener("click", function(){
-  if(textInput.value !== ""){
+  if(inputValueLength !== ""){
     console.log(textInput.value);
     addToList();
   }  
